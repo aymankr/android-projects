@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ScoresActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerHard"
+        android:layout_width="177dp"
+        android:layout_height="111dp"
+        tools:layout_editor_absoluteX="117dp"
+        tools:layout_editor_absoluteY="422dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="177dp"
+            android:layout_height="111dp"
+            tools:layout_editor_absoluteX="108dp"
+            tools:layout_editor_absoluteY="133dp" />
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerMedium"
+        android:layout_width="177dp"
+        android:layout_height="111dp"
+        tools:layout_editor_absoluteX="117dp"
+        tools:layout_editor_absoluteY="288dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="177dp"
+            android:layout_height="111dp"
+            tools:layout_editor_absoluteX="108dp"
+            tools:layout_editor_absoluteY="133dp" />
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <Button
+        android:id="@+id/returnScoreId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="24dp"
+        android:text="RETURN"
+        app:layout_constraintEnd_toStartOf="@+id/reinitScoreId"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/reinitScoreId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="168dp"
+        android:text="REINIT"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerEasy"
+        android:layout_width="177dp"
+        android:layout_height="111dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="52dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reinitScoreId">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="177dp"
+            android:layout_height="111dp"
+            tools:layout_editor_absoluteX="108dp"
+            tools:layout_editor_absoluteY="133dp" />
+    </androidx.recyclerview.widget.RecyclerView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
