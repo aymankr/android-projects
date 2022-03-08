@@ -6,40 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".ScoresActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerHard"
-        android:layout_width="177dp"
-        android:layout_height="111dp"
-        tools:layout_editor_absoluteX="117dp"
-        tools:layout_editor_absoluteY="422dp">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="177dp"
-            android:layout_height="111dp"
-            tools:layout_editor_absoluteX="108dp"
-            tools:layout_editor_absoluteY="133dp" />
-    </androidx.recyclerview.widget.RecyclerView>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerMedium"
-        android:layout_width="177dp"
-        android:layout_height="111dp"
-        tools:layout_editor_absoluteX="117dp"
-        tools:layout_editor_absoluteY="288dp">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="177dp"
-            android:layout_height="111dp"
-            tools:layout_editor_absoluteX="108dp"
-            tools:layout_editor_absoluteY="133dp" />
-    </androidx.recyclerview.widget.RecyclerView>
-
     <Button
         android:id="@+id/returnScoreId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="28dp"
+        android:onClick="onClickReturn"
         android:text="RETURN"
         app:layout_constraintEnd_toStartOf="@+id/reinitScoreId"
         app:layout_constraintTop_toTopOf="parent" />
@@ -48,26 +21,18 @@
         android:id="@+id/reinitScoreId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="168dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="160dp"
+        android:onClick="onClickReinit"
         android:text="REINIT"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerEasy"
-        android:layout_width="177dp"
-        android:layout_height="111dp"
-        android:layout_marginStart="116dp"
-        android:layout_marginTop="52dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reinitScoreId">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="177dp"
-            android:layout_height="111dp"
-            tools:layout_editor_absoluteX="108dp"
-            tools:layout_editor_absoluteY="133dp" />
-    </androidx.recyclerview.widget.RecyclerView>
+    <ListView
+        android:layout_width="409dp"
+        android:layout_height="629dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reinitScoreId" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
