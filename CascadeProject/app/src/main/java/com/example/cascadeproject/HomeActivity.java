@@ -18,9 +18,9 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void onClickStart(View view) {
-        RadioButton easyButton = (RadioButton) findViewById(R.id.easyId);
-        RadioButton mediumButton = (RadioButton) findViewById(R.id.mediumId);
-        RadioButton hardButton = (RadioButton) findViewById(R.id.hardId);
+        RadioButton easyButton = findViewById(R.id.easyId);
+        RadioButton mediumButton = findViewById(R.id.mediumId);
+        RadioButton hardButton = findViewById(R.id.hardId);
         if (easyButton.isChecked() || mediumButton.isChecked() || hardButton.isChecked()) {
             startActivity(new Intent(HomeActivity.this, GameActivity.class));
         }

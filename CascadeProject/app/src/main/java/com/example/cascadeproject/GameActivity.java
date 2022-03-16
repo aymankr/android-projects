@@ -14,11 +14,12 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
     }
 
-    public void onClickStart(View view) {
+    public void onClickReturn(View view) {
         startActivity(new Intent(GameActivity.this, HomeActivity.class));
     }
 
-    public void onClickScores(View view) {
-        startActivity(new Intent(GameActivity.this, ScoresActivity.class));
+    public void onClickTryAgain(View view) {
+        //startActivity(new Intent(GameActivity.this, HomeActivity.class));
+        // fc restart
     }
 }
