@@ -16,7 +16,7 @@ public class ScoresActivity extends AppCompatActivity {
     }
 
     public void onClickReturn(View view) {
-        startActivity(new Intent(ScoresActivity.this, HomeActivity.class));
+        startActivity(new Intent(this, HomeActivity.class));
     }
 
     public void onClickReinit(View view) {

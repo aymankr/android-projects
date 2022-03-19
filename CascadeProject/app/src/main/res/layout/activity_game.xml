@@ -50,6 +50,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <GridView
+        android:id="@+id/gridViewId"
         android:layout_width="384dp"
         android:layout_height="574dp"
         android:layout_marginTop="140dp"
