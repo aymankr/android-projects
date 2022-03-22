@@ -10,16 +10,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 public class HomeActivity extends AppCompatActivity {
-    private int bestScore = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        if (getIntent().getStringExtra("bestScore") != null) {
-            bestScore = Integer.parseInt(getIntent().getStringExtra("bestScore"));
-        }
     }
 
     public void onClickStart(View view) {
@@ -42,12 +37,21 @@ public class HomeActivity extends AppCompatActivity {
 
         if (selectedButton != null) {
             Intent intent = new Intent(this, GameActivity.class);
+            System.out.println("score" + getIntent().getStringExtra("bestScore"));
+            if (getIntent().getStringExtra("bestScore") != null) {
+                int bestScore = Integer.parseInt(getIntent().getStringExtra("bestScore"));
+                intent.putExtra("bestScore", "" + bestScore);
+            }
             intent.putExtra("difficulty", "" + difficulty);
             this.startActivity(intent);
         }
     }
 
     public void onClickScores(View view) {
+        int bestScore = 0;
+        if (getIntent().getStringExtra("bestScore") != null) {
+            bestScore = Integer.parseInt(getIntent().getStringExtra("bestScore"));
+        }
         Intent intent = new Intent(this, ScoresActivity.class);
         intent.putExtra("bestScore", "" + bestScore);
         startActivity(new Intent(this, ScoresActivity.class));

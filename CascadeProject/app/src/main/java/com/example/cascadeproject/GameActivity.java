@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,11 +27,13 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        if (getIntent().getStringExtra("bestScore") != null) {
+            bestScore = Integer.parseInt(getIntent().getStringExtra("bestScore"));
+        }
         TextView txtBestScore = findViewById(R.id.bestScore);
-        txtBestScore.setText("0");
+        txtBestScore.setText("Best score : " + bestScore);
         TextView txtScore = findViewById(R.id.scoreId);
-        txtScore.setText("0");
-
+        txtScore.setText("Score : " + score);
         initBoard();
         initGridView();
     }
@@ -37,13 +41,19 @@ public class GameActivity extends AppCompatActivity {
     public void onClickReturn(View view) {
         Intent intent = new Intent(this, HomeActivity.class);
         intent.putExtra("bestScore", "" + bestScore);
+        System.out.println(bestScore);
         this.startActivity(intent);
     }
 
     public void onClickTryAgain(View view) {
+        reinitScore();
+    }
+
+    private void reinitScore() {
+        if (score > bestScore) bestScore = score;
         score = 0;
         TextView txtScore = findViewById(R.id.scoreId);
-        txtScore.setText("0");
+        txtScore.setText("Score : " + score);
         initBoard();
         initGridView();
     }
@@ -85,9 +95,9 @@ public class GameActivity extends AppCompatActivity {
             removeNeighbours(row,col, board[row][col]);
 
             TextView txtBestScore = findViewById(R.id.bestScore);
-            txtBestScore.setText(String.valueOf(bestScore));
+            txtBestScore.setText("Best score : " + bestScore);
             TextView txtScore = findViewById(R.id.scoreId);
-            txtScore.setText(String.valueOf(score));
+            txtScore.setText("Score : " + score);
 
             imageAdapter = new ImageAdapter(activity, boardToList());
             gridView.setAdapter(imageAdapter);
@@ -136,30 +146,38 @@ public class GameActivity extends AppCompatActivity {
             removeNeighbours(row, col-i,removed);
         }
 
-        if (score > bestScore) {
-            bestScore = score;
+        if (noAnySameNeighbours() && !gridIsNotEmpty()) {
+            Snackbar.make(findViewById(R.id.myCoordinatorLayout), "Victory ! Score : " + score,
+                    Snackbar.LENGTH_SHORT)
+                    .show();
+            reinitScore();
         }
-        if (isAVictory()) {
-            System.out.println("ws");
+        else if (noAnySameNeighbours()) { // if grid is empty and there are no same neighbours between balls
+            Snackbar.make(findViewById(R.id.myCoordinatorLayout), "You lost, try again !",
+                    Snackbar.LENGTH_SHORT)
+                    .show();
+            reinitScore();
         }
     }
 
-    private boolean isAVictory() {
+    private boolean gridIsNotEmpty() {
+        for (int row = 0; row<size;row++) {
+            for (int col = 0; col <size;col++) {
+                if (board[row][col]!=0) return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean noAnySameNeighbours() {
         for (int row = 0; row<size;row++) {
             for (int col = 0; col <size;col++) {
                 int ball = board[row][col];
-                if (row > 0 && row < size && col > 0 && col < size) {
-
-                    System.out.println(ball + " " + board[row+1][col]);
-                    System.out.println(ball + " " + board[row-1][col]);
-                    System.out.println(ball + " " + board[row][col+1]);
-                    System.out.println(ball + " " + board[row][col-1]);
-                }
-                if ((row + 1 < size && ball == board[row+1][col]) ||
+                if (ball!=0 && ((row + 1 < size && ball == board[row+1][col]) ||
                         (row - 1 >= 0 && board[row - 1][col] == ball) ||
                         (col + 1 < size && board[row][col + 1] == ball) ||
-                        (col - 1 >= 0 && board[row][col - 1] == ball)) {
-                    return false;
+                        (col - 1 >= 0 && board[row][col - 1] == ball))) {
+                        return false;
                 }
             }
         }

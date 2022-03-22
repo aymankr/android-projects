@@ -51,10 +51,19 @@
 
     <GridView
         android:id="@+id/gridViewId"
-        android:layout_width="384dp"
-        android:layout_height="574dp"
-        android:layout_marginTop="140dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="375dp"
+        android:layout_height="434dp"
+        android:layout_marginTop="156dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/myCoordinatorLayout"
+        android:layout_width="417dp"
+        android:layout_height="79dp"
+        android:layout_marginTop="44dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/gridViewId"
+        tools:layout_editor_absoluteX="-3dp"></LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
