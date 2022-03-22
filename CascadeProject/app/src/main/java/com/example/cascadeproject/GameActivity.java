@@ -139,6 +139,31 @@ public class GameActivity extends AppCompatActivity {
         if (score > bestScore) {
             bestScore = score;
         }
+        if (isAVictory()) {
+            System.out.println("ws");
+        }
+    }
+
+    private boolean isAVictory() {
+        for (int row = 0; row<size;row++) {
+            for (int col = 0; col <size;col++) {
+                int ball = board[row][col];
+                if (row > 0 && row < size && col > 0 && col < size) {
+
+                    System.out.println(ball + " " + board[row+1][col]);
+                    System.out.println(ball + " " + board[row-1][col]);
+                    System.out.println(ball + " " + board[row][col+1]);
+                    System.out.println(ball + " " + board[row][col-1]);
+                }
+                if ((row + 1 < size && ball == board[row+1][col]) ||
+                        (row - 1 >= 0 && board[row - 1][col] == ball) ||
+                        (col + 1 < size && board[row][col + 1] == ball) ||
+                        (col - 1 >= 0 && board[row][col - 1] == ball)) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     private void applyGravity(int i, int j) {
