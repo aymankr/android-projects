@@ -21,12 +21,17 @@ public class GameActivity extends AppCompatActivity {
     private ImageAdapter imageAdapter;
     private List<Integer> imagesList;
     private int size, score = 0, bestScore = 0;
+    private ArrayList<String> scoresList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        scoresList = new ArrayList<>();
+        if (getIntent().getStringArrayListExtra("scoresList") != null) {
+            scoresList = getIntent().getStringArrayListExtra("scoresList");
+        }
         if (getIntent().getStringExtra("bestScore") != null) {
             bestScore = Integer.parseInt(getIntent().getStringExtra("bestScore"));
         }
@@ -41,7 +46,7 @@ public class GameActivity extends AppCompatActivity {
     public void onClickReturn(View view) {
         Intent intent = new Intent(this, HomeActivity.class);
         intent.putExtra("bestScore", "" + bestScore);
-        System.out.println(bestScore);
+        intent.putStringArrayListExtra("scoresList", scoresList);
         this.startActivity(intent);
     }
 

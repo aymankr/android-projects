@@ -9,12 +9,30 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.google.android.material.snackbar.Snackbar;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class HomeActivity extends AppCompatActivity {
+
+    private ArrayList<String> scoresList;
+    private int bestScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (getIntent().getStringExtra("bestScore") != null) {
+            bestScore = Integer.parseInt(getIntent().getStringExtra("bestScore"));
+        }
+
+        scoresList = new ArrayList<>();
+        if (getIntent().getStringArrayListExtra("scoresList") != null) {
+            scoresList = getIntent().getStringArrayListExtra("scoresList");
+        }
     }
 
     public void onClickStart(View view) {
@@ -36,24 +54,29 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         if (selectedButton != null) {
+            if (bestScore!=0) {
+                scoresList.add(String.valueOf(bestScore));
+            }
             Intent intent = new Intent(this, GameActivity.class);
             System.out.println("score" + getIntent().getStringExtra("bestScore"));
-            if (getIntent().getStringExtra("bestScore") != null) {
-                int bestScore = Integer.parseInt(getIntent().getStringExtra("bestScore"));
-                intent.putExtra("bestScore", "" + bestScore);
-            }
+            intent.putExtra("bestScore", "" + bestScore);
+            intent.putStringArrayListExtra("scoresList", scoresList);
             intent.putExtra("difficulty", "" + difficulty);
             this.startActivity(intent);
+        }
+        else {
+            Snackbar.make(findViewById(R.id.myCoordinatorLayout), "Select a difficulty",
+                    Snackbar.LENGTH_SHORT)
+                    .show();
         }
     }
 
     public void onClickScores(View view) {
-        int bestScore = 0;
-        if (getIntent().getStringExtra("bestScore") != null) {
-            bestScore = Integer.parseInt(getIntent().getStringExtra("bestScore"));
+        if (bestScore!=0) {
+            scoresList.add(String.valueOf(bestScore));
         }
         Intent intent = new Intent(this, ScoresActivity.class);
-        intent.putExtra("bestScore", "" + bestScore);
-        startActivity(new Intent(this, ScoresActivity.class));
+        intent.putStringArrayListExtra("scoresList", scoresList);
+        startActivity(intent);
     }
 }
