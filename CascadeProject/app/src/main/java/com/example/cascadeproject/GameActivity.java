@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 
@@ -27,6 +31,14 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        Button returnGameBtn =findViewById(R.id.returnGameId);
+        returnGameBtn.setBackgroundColor(Color.RED);
+        returnGameBtn.setTextColor(Color.WHITE);
+
+        Button tryBtn =findViewById(R.id.tryId);
+        tryBtn.setBackgroundColor(Color.RED);
+        tryBtn.setTextColor(Color.WHITE);
 
         scoresList = new ArrayList<>();
         if (getIntent().getStringArrayListExtra("scoresList") != null) {
@@ -156,6 +168,7 @@ public class GameActivity extends AppCompatActivity {
                     Snackbar.LENGTH_SHORT)
                     .show();
             reinitScore();
+
         }
         else if (noAnySameNeighbours()) { // if grid is empty and there are no same neighbours between balls
             Snackbar.make(findViewById(R.id.myCoordinatorLayout), "You lost, try again !",

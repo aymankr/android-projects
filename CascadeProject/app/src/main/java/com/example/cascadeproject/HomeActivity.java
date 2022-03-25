@@ -3,6 +3,7 @@ package com.example.cascadeproject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -33,6 +34,14 @@ public class HomeActivity extends AppCompatActivity {
         if (getIntent().getStringArrayListExtra("scoresList") != null) {
             scoresList = getIntent().getStringArrayListExtra("scoresList");
         }
+
+        Button startBtn =findViewById(R.id.startId);
+        startBtn.setBackgroundColor(Color.RED);
+        startBtn.setTextColor(Color.WHITE);
+
+        Button scoreBtn =findViewById(R.id.scoreId);
+        scoreBtn.setBackgroundColor(Color.RED);
+        scoreBtn.setTextColor(Color.WHITE);
     }
 
     public void onClickStart(View view) {

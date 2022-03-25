@@ -3,7 +3,10 @@ package com.example.cascadeproject;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -24,6 +27,14 @@ public class ScoresActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scores);
 
+        Button returnBtn =findViewById(R.id.returnScoreId);
+        returnBtn.setBackgroundColor(Color.RED);
+        returnBtn.setTextColor(Color.WHITE);
+
+        Button reinitBtn =findViewById(R.id.reinitScoreId);
+        reinitBtn.setBackgroundColor(Color.RED);
+        reinitBtn.setTextColor(Color.WHITE);
+
         if (getIntent().getStringArrayListExtra("scoresList")!=null) {
             scoresList = getIntent().getStringArrayListExtra("scoresList");
         }
@@ -33,7 +44,6 @@ public class ScoresActivity extends AppCompatActivity {
                     Snackbar.LENGTH_SHORT)
                     .show();
         }
-
         displayScores();
     }
 
